@@ -34,7 +34,7 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 1️⃣點擊連結註冊帳號
 https://partner.bitget.fit/bg/WedJatBTC
-2️⃣輸入UID共10碼
+2️⃣在此回覆UID共10碼
 ⚠️邀請連結為一次性使用⚠️
 ⚠️註冊後記得點擊下方加入在退出⚠️
 ⚠️否則無法再次點擊⚠️
