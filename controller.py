@@ -1,8 +1,10 @@
 from exceptions import BitgetAPIException
 import bitget_api as baseApi
-import constants, utils
+import constants
+import utils
 import datahelper
 import datetime
+import asyncio
 
 async def is_valid_uid(message: str):
     if not message.isdigit():
@@ -20,9 +22,10 @@ async def is_valid_uid(message: str):
         params["endTime"] = str(utils.get_timestamp())
         params["pageNo"] = 1
         params["pageSize"] = 1000
-        response = await request.post(constants.AGENT_ENDPOINT, params)
+        response = await asyncio.to_thread(request.post, constants.AGENT_ENDPOINT, params)
     except BitgetAPIException as e:
         print("ERROR: " + e.message)
+        return False
 
     current_uid_info: list = response['data']
 
