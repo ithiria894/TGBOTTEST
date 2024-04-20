@@ -1,4 +1,4 @@
-from telegram import Update
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 import constants
 import controller
@@ -9,6 +9,9 @@ from telegram import Bot
 
 
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+        # Create an InlineKeyboardMarkup with a single button
+    button = InlineKeyboardButton("Start", callback_data="start")
+    keyboard = InlineKeyboardMarkup([[button]])
     await update.message.reply_text("歡迎加入蟹家軍! 請輸入 Bitget UID 加入vip群.")
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -49,11 +52,18 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def remind_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("欢迎使用！请使用 /start 命令开始对话。")
 
+async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    if query.data == 'start':
+        # Trigger the same action as the start command
+        await start_command(update, context)
+
 if __name__ == '__main__':
     app = Application.builder().token(constants.TOKEN).build()
 
     app.add_handler(CommandHandler('start', start_command))
     app.add_handler(CommandHandler('help', help_command))
     app.add_handler(MessageHandler(filters.TEXT, handle_message))
+    app.add_handler(CallbackQueryHandler(button_callback))
                     
     app.run_polling(poll_interval=3)
