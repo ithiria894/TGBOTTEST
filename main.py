@@ -2,10 +2,7 @@ import telebot
 import constants
 import controller
 
-YOUR_BOT_TOKEN="6454485391:AAGXnoyfYfizDPcHgjDKSQruzSFY-xs02R0"
-API_TOKEN = YOUR_BOT_TOKEN
-
-bot = telebot.TeleBot(API_TOKEN)
+bot = telebot.TeleBot(constants.TOKEN)
 
 def get_group_invite_link():
     chat_id = constants.VIP_GROUP_ID
