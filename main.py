@@ -74,7 +74,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 await update.message.reply_text("Failed to get group invite link. Please try again later.")
         else:
             await update.message.reply_text("""
-                                            這個 UID 不對，請點擊連結註冊帳號https://partner.bitget.fit/bg/WedJatBTC ,然后輸入正確的 UID 。""")
+                                            這個 UID 不對，請點擊連結註冊帳號https://partner.bitget.fit/bg/WedJatBTC ,然后回覆正確的 UID 。""")
 
 
 async def remind_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
