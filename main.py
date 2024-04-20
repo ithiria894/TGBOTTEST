@@ -2,9 +2,6 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 import constants
 import controller
-import datetime
-import bitget_api as baseApi
-from exceptions import BitgetAPIException
 from telegram import Bot
 
 
