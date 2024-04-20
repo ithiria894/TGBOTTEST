@@ -23,15 +23,6 @@ def get_group_invite_link(bot_token, group_id):
         print("Error occurred while getting group invite link:", e)
         return None
     
-# def get_group_invite_link():
-#     try:
-#         group_id = constants.VIP_GROUP_ID
-#         request = baseApi.BitgetApi(constants.ACCESS_KEY, constants.SECRET_KEY, constants.PASSPHRASE)
-#         invite_link = request.export_chat_invite_link(group_id)
-#         return invite_link
-#     except Exception as e:
-#         print("Error occurred while getting group invite link:", e)
-#         return None
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message_type = update.message.chat.type
