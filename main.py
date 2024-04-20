@@ -1,4 +1,6 @@
 import telebot
+import constants
+import controller
 
 YOUR_BOT_TOKEN="6454485391:AAGXnoyfYfizDPcHgjDKSQruzSFY-xs02R0"
 API_TOKEN = YOUR_BOT_TOKEN
@@ -6,7 +8,7 @@ API_TOKEN = YOUR_BOT_TOKEN
 bot = telebot.TeleBot(API_TOKEN)
 
 def get_group_invite_link():
-    chat_id = '-1002087737560'
+    chat_id = constants.VIP_GROUP_ID
     try:
         invite_link = bot.export_chat_invite_link(chat_id)
         return invite_link
@@ -21,11 +23,11 @@ def send_welcome(message):
     bot.reply_to(message, "歡迎加入蟹家軍! 請輸入 Bitget UID 加入vip群.")
 
 @bot.message_handler(func=lambda message: True)
-def handle_message(message):
+async def handle_message(message):
     if message.chat.type == 'private':
         uid = message.text
         print(uid)
-        if uid == "123":
+        if await controller.is_valid_uid(uid):
             invite_link = get_group_invite_link()
             if invite_link:
                 bot.reply_to(message, f"Here is the group invite link: {invite_link}")
@@ -38,8 +40,5 @@ def handle_message(message):
 def remind_start(message):
     bot.reply_to(message, "欢迎使用！请使用 /start 命令开始对话。")
 
-def main():
-    bot.polling()
-
 if __name__ == "__main__":
-    main()
+    bot.polling()
