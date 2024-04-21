@@ -9,6 +9,8 @@ import asyncio
 async def is_valid_uid(message: str):
     if not message.isdigit():
         return False
+    if datahelper.check_uid_list(constants.DATABASE_NAME, message):
+        return False
     
     today = datetime.datetime.now()
     last_month = today.replace(day=1) - datetime.timedelta(days=1)
@@ -30,8 +32,7 @@ async def is_valid_uid(message: str):
     current_uid_info: list = response['data']
 
     if not bool(current_uid_info):
-        if not datahelper.check_uid_list(constants.DATABASE_NAME, message):
-            return False
+        return False
         
     datahelper.add_uid_to_list(constants.DATABASE_NAME, message, True)
     return True

@@ -13,7 +13,7 @@ def check_uid_list(filename, uid):
         with open(filename, 'r') as db:
             reader = csv.DictReader(db)
             for row in reader:
-                if row['uid'] == uid:
+                if row['UID'] == uid:
                     return True
     except FileNotFoundError: 
         print(f'ERROR: {filename} not found...')

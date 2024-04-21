@@ -41,4 +41,4 @@ DATABASE_NAME: Final = 'uidList_database.csv'
 
 # tg group id
 EFFECTIVE_CHAT_ID: Final = '-1002087737560'
-VIP_GROUP_ID: Final = '-1002043576596'
+VIP_GROUP_ID: Final = '-1002087737560' # update group id for usage vip -1001856345480
